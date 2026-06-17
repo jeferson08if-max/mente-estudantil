@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mente Estudantil — Saúde Mental para Estudantes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul: #1D4ED8;
+  --azul-vivo: #3B82F6;
+  --azul-claro: #DBEAFE;
+  --azul-palido: #EFF6FF;
+  --roxo: #6D28D9;
+  --roxo-vivo: #8B5CF6;
+  --roxo-claro: #EDE9FE;
+  --roxo-palido: #F5F3FF;
+  --roxo-escuro: #4C1D95;
+  --gradiente: linear-gradient(135deg, #1D4ED8 0%, #6D28D9 100%);
+  --gradiente-suave: linear-gradient(135deg, #EFF6FF 0%, #F5F3FF 100%);
+  --bg: #FAFBFF;
+  --bg2: #F0F4FF;
+  --branco: #FFFFFF;
+  --texto: #0F0A2A;
+  --texto2: #4B4470;
+  --texto3: #8B85A8;
+  --borda: rgba(109,40,217,0.1);
+  --borda2: rgba(29,78,216,0.12);
+  --sombra: 0 4px 24px rgba(109,40,217,0.08);
+  --sombra-hover: 0 12px 40px rgba(109,40,217,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--texto);overflow-x:hidden;}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--roxo-claro);border-radius:10px;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1rem,4vw,3rem);height:68px;
+  background:rgba(250,251,255,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--borda);
+}
+.logo{
+  display:flex;align-items:center;gap:.6rem;
+  text-decoration:none;
+  font-family:'Lora',serif;font-size:1.35rem;font-weight:700;
+  color:transparent;
+  background:var(--gradiente);
+  -webkit-background-clip:text;background-clip:text;
+}
+.logo-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gradiente);
+  box-shadow:0 0 0 3px rgba(109,40,217,.15);
+}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--texto2);
+  font-size:.875rem;font-weight:500;
+  transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:2px;
+  background:var(--gradiente);border-radius:2px;
+  transition:width .3s;
+}
+.nav-links a:hover{color:var(--roxo);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  display:flex;align-items:center;gap:.4rem;
+  background:var(--gradiente);color:#fff;
+  border:none;padding:.5rem 1.2rem;
+  border-radius:50px;font-size:.84rem;font-weight:600;
+  cursor:pointer;font-family:inherit;
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(109,40,217,.35);}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;padding:.3rem;}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:7rem clamp(1rem,5vw,4rem) 5rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg-orbs{position:absolute;inset:0;pointer-events:none;}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);}
+.orb1{width:500px;height:500px;background:rgba(29,78,216,.07);top:-10%;left:-15%;}
+.orb2{width:400px;height:400px;background:rgba(109,40,217,.08);bottom:-5%;right:-10%;}
+.orb3{width:250px;height:250px;background:rgba(59,130,246,.05);top:40%;left:40%;}
+/* Decorative shapes */
+.hero-shapes{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.shape{position:absolute;border:1.5px solid rgba(109,40,217,.08);border-radius:50%;}
+.sh1{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.sh2{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.sh3{width:1200px;height:1200px;top:50%;left:50%;transform:translate(-50%,-50%);}
+
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;max-width:1100px;width:100%;
+}
+.hero-text{}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--roxo-claro);
+  border:1px solid rgba(109,40,217,.2);
+  color:var(--roxo);padding:.35rem 1rem;
+  border-radius:50px;font-size:.78rem;font-weight:600;
+  margin-bottom:1.5rem;letter-spacing:.04em;
+}
+.hero-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--roxo-vivo);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero h1{
+  font-family:'Lora',serif;
+  font-size:clamp(2.2rem,4.5vw,3.6rem);
+  font-weight:700;line-height:1.18;
+  margin-bottom:1.4rem;color:var(--texto);
+}
+.hero h1 em{font-style:italic;color:transparent;background:var(--gradiente);-webkit-background-clip:text;background-clip:text;}
+.hero-desc{
+  font-size:1.05rem;color:var(--texto2);line-height:1.85;
+  font-weight:300;margin-bottom:2rem;max-width:480px;
+}
+.hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;}
+.btn-grad{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gradiente);color:#fff;
+  padding:.8rem 1.8rem;border-radius:50px;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+  border:none;cursor:pointer;font-family:inherit;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(109,40,217,.35);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:var(--roxo);
+  padding:.8rem 1.8rem;border-radius:50px;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+  border:1.5px solid rgba(109,40,217,.25);cursor:pointer;font-family:inherit;
+  transition:all .2s;
+}
+.btn-outline:hover{background:var(--roxo-claro);border-color:var(--roxo-vivo);}
+
+/* Hero card flutuante */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;}
+.hero-card-wrap{position:relative;width:340px;}
+.hero-card-main{
+  background:#fff;border-radius:24px;
+  border:1px solid var(--borda);
+  padding:1.8rem;
+  box-shadow:var(--sombra);
+  position:relative;z-index:2;
+}
+.hc-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--gradiente);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:1.2rem;
+}
+.hc-title{font-family:'Lora',serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem;}
+.hc-sub{font-size:.8rem;color:var(--texto3);margin-bottom:1.2rem;font-weight:400;}
+.hc-msg{
+  background:var(--gradiente-suave);
+  border-radius:14px;padding:.9rem 1rem;
+  font-size:.83rem;color:var(--texto2);line-height:1.6;
+  border:1px solid var(--borda);
+}
+.hc-typing{
+  display:flex;align-items:center;gap:5px;
+  margin-top:.8rem;padding:.6rem .8rem;
+  background:var(--roxo-claro);border-radius:10px;
+  width:fit-content;
+}
+.tdot{width:7px;height:7px;border-radius:50%;background:var(--roxo-vivo);animation:tdot 1.2s infinite;}
+.tdot:nth-child(2){animation-delay:.2s;}
+.tdot:nth-child(3){animation-delay:.4s;}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+.hero-card-float{
+  position:absolute;
+  background:#fff;border-radius:16px;
+  border:1px solid var(--borda);
+  padding:.9rem 1.2rem;
+  box-shadow:var(--sombra);
+  font-size:.8rem;
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.float1{bottom:-30px;left:-50px;color:var(--texto2);animation-delay:0s;}
+.float2{top:-20px;right:-40px;animation-delay:2s;}
+.float-emoji{font-size:1.4rem;display:block;margin-bottom:.2rem;}
+.float-label{font-weight:600;color:var(--texto);font-size:.78rem;}
+.float-val{color:var(--texto3);font-size:.72rem;}
+
+/* Hero stats */
+.hero-stats{
+  display:flex;gap:2.5rem;margin-top:2.5rem;
+  flex-wrap:wrap;
+}
+.hstat-num{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:transparent;background:var(--gradiente);-webkit-background-clip:text;background-clip:text;}
+.hstat-label{font-size:.75rem;color:var(--texto3);margin-top:.1rem;font-weight:400;max-width:100px;line-height:1.4;}
+
+/* ─── SECTION COMUM ─── */
+section{padding:5.5rem clamp(1rem,5vw,4rem);}
+.container{max-width:1100px;margin:0 auto;}
+.sec-label{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--roxo);margin-bottom:.8rem;
+}
+.sec-label::before{content:'';width:20px;height:2px;background:var(--gradiente);border-radius:2px;}
+.sec-title{
+  font-family:'Lora',serif;
+  font-size:clamp(1.7rem,3vw,2.6rem);
+  font-weight:700;line-height:1.25;
+  margin-bottom:.9rem;color:var(--texto);
+}
+.sec-title em{font-style:italic;color:transparent;background:var(--gradiente);-webkit-background-clip:text;background-clip:text;}
+.sec-desc{font-size:1rem;color:var(--texto2);line-height:1.8;font-weight:300;max-width:540px;}
+
+/* ─── INFOS ─── */
+.infos-bg{background:var(--bg);}
+.infos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.4rem;margin-top:3rem;
+}
+.info-card{
+  background:#fff;border-radius:20px;
+  border:1px solid var(--borda);
+  padding:2rem;cursor:pointer;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.info-card::after{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:var(--gradiente);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s;
+}
+.info-card:hover{transform:translateY(-8px);box-shadow:var(--sombra-hover);}
+.info-card:hover::after{transform:scaleX(1);}
+.ic-icon{
+  width:50px;height:50px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:1.2rem;
+}
+.ic-azul{background:var(--azul-claro);}
+.ic-roxo{background:var(--roxo-claro);}
+.ic-mix{background:linear-gradient(135deg,var(--azul-claro),var(--roxo-claro));}
+.info-card h3{font-family:'Lora',serif;font-size:1.1rem;font-weight:600;margin-bottom:.5rem;}
+.info-card p{font-size:.875rem;color:var(--texto2);line-height:1.75;font-weight:300;}
+.ic-link{
+  display:inline-flex;align-items:center;gap:.3rem;
+  color:var(--roxo);font-size:.82rem;font-weight:600;
+  margin-top:1rem;text-decoration:none;
+  transition:gap .2s;cursor:pointer;
+}
+.ic-link:hover{gap:.6rem;}
+
+/* ─── BEM-ESTAR ─── */
+.bem-bg{background:var(--gradiente-suave);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda);}
+.dicas-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.2rem;margin-top:3rem;
+}
+.dica{
+  background:#fff;border-radius:18px;
+  border:1px solid var(--borda);
+  padding:1.5rem 1.4rem;
+  display:flex;gap:1rem;align-items:flex-start;
+  transition:transform .25s,box-shadow .25s;
+}
+.dica:hover{transform:translateY(-4px);box-shadow:var(--sombra);}
+.dica-n{
+  min-width:38px;height:38px;border-radius:12px;
+  background:var(--gradiente);
+  color:#fff;font-size:.78rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.dica h4{font-size:.9rem;font-weight:600;margin-bottom:.3rem;color:var(--texto);}
+.dica p{font-size:.8rem;color:var(--texto2);line-height:1.65;font-weight:300;}
+
+/* ─── FRASES APOIO ─── */
+.frases-wrap{
+  background:var(--gradiente);
+  border-radius:28px;padding:4rem 3rem;
+  text-align:center;position:relative;overflow:hidden;
+}
+.frases-wrap::before{
+  content:'"';position:absolute;top:-30px;left:20px;
+  font-size:14rem;color:rgba(255,255,255,.06);
+  font-family:serif;line-height:1;
+}
+.frases-wrap::after{
+  content:'';position:absolute;
+  width:300px;height:300px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+  bottom:-100px;right:-80px;
+}
+.frase-slide{display:none;animation:fadeUp .4s ease;}
+.frase-slide.on{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.frase-q{
+  font-family:'Lora',serif;font-style:italic;
+  font-size:clamp(1.2rem,2.5vw,1.75rem);
+  color:#fff;line-height:1.55;margin-bottom:1.2rem;
+  position:relative;z-index:1;
+}
+.frase-a{color:rgba(255,255,255,.6);font-size:.85rem;font-weight:300;z-index:1;position:relative;}
+.frase-nav{display:flex;justify-content:center;gap:.5rem;margin-top:2rem;}
+.fnavdot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.35);
+  cursor:pointer;border:none;transition:all .2s;
+}
+.fnavdot.on{background:#fff;transform:scale(1.25);}
+
+/* ─── BLOG ─── */
+.blog-bg{background:var(--bg);}
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.blog-card{
+  background:#fff;border-radius:22px;
+  border:1px solid var(--borda);overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+}
+.blog-card:hover{transform:translateY(-7px);box-shadow:var(--sombra-hover);}
+.blog-thumb{
+  height:170px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;position:relative;
+}
+.bt1{background:linear-gradient(135deg,#DBEAFE 0%,#EDE9FE 100%);}
+.bt2{background:linear-gradient(135deg,#EDE9FE 0%,#DBEAFE 100%);}
+.bt3{background:linear-gradient(135deg,#C4B5FD 0%,#93C5FD 100%);}
+.blog-body{padding:1.5rem;}
+.blog-tag{
+  display:inline-block;font-size:.72rem;font-weight:700;
+  padding:.25rem .75rem;border-radius:50px;margin-bottom:.8rem;
+}
+.btag-roxo{background:var(--roxo-claro);color:var(--roxo);}
+.btag-azul{background:var(--azul-claro);color:var(--azul);}
+.blog-card h3{
+  font-family:'Lora',serif;font-size:1.05rem;font-weight:600;
+  line-height:1.45;margin-bottom:.6rem;color:var(--texto);
+}
+.blog-card p{font-size:.845rem;color:var(--texto2);line-height:1.75;font-weight:300;}
+.blog-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:1.2rem;padding-top:1rem;
+  border-top:1px solid var(--borda);
+}
+.blog-meta-info{font-size:.75rem;color:var(--texto3);}
+.blog-read{
+  font-size:.78rem;font-weight:600;color:var(--roxo);
+  cursor:pointer;display:flex;align-items:center;gap:.25rem;
+  transition:gap .2s;
+}
+.blog-read:hover{gap:.5rem;}
+
+/* ─── AJUDA ─── */
+.ajuda-bg{background:var(--gradiente-suave);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda);}
+.ajuda-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.3rem;margin-top:3rem;
+}
+.ajuda-card{
+  background:#fff;border-radius:20px;
+  border:1px solid var(--borda);
+  padding:1.8rem;text-align:center;
+  transition:transform .3s,box-shadow .3s;
+}
+.ajuda-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-hover);}
+.ajuda-ico{font-size:2.4rem;margin-bottom:1rem;display:block;}
+.ajuda-card h3{font-family:'Lora',serif;font-size:1.05rem;font-weight:600;margin-bottom:.5rem;}
+.ajuda-card p{font-size:.845rem;color:var(--texto2);line-height:1.7;font-weight:300;margin-bottom:1.2rem;}
+.ajuda-btn{
+  display:inline-block;padding:.5rem 1.2rem;
+  border-radius:50px;font-size:.8rem;font-weight:600;
+  text-decoration:none;cursor:pointer;border:none;font-family:inherit;
+  transition:transform .2s,filter .2s;
+}
+.ajuda-btn:hover{transform:translateY(-1px);filter:brightness(.95);}
+.ab1{background:var(--azul-claro);color:var(--azul);}
+.ab2{background:var(--roxo-claro);color:var(--roxo);}
+.ab3{background:#DCFCE7;color:#166534;}
+.ab4{background:#FEF9C3;color:#854D0E;}
+
+/* ─── CRISE BANNER ─── */
+.crise{
+  background:var(--roxo-escuro);padding:3.5rem clamp(1rem,5vw,4rem);
+  text-align:center;
+}
+.crise h2{
+  font-family:'Lora',serif;font-size:1.9rem;
+  color:#fff;font-weight:700;margin-bottom:.5rem;
+}
+.crise p{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1.8rem;font-weight:300;}
+.tels{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.tel{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:50px;padding:.7rem 1.6rem;
+  color:#fff;font-weight:700;font-size:1rem;
+  backdrop-filter:blur(8px);
+}
+.tel span{display:block;font-size:.7rem;font-weight:300;opacity:.7;}
+
+/* ─── FOOTER ─── */
+footer{background:#0F0A2A;padding:3rem clamp(1rem,5vw,4rem) 2rem;text-align:center;}
+.footer-logo{font-family:'Lora',serif;font-size:1.5rem;font-weight:700;color:transparent;background:linear-gradient(135deg,#93C5FD,#C4B5FD);-webkit-background-clip:text;background-clip:text;margin-bottom:.7rem;}
+footer > .container > p{color:rgba(255,255,255,.4);font-size:.85rem;line-height:1.8;max-width:440px;margin:0 auto 1.5rem;font-weight:300;}
+.flinks{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.flinks a{color:rgba(255,255,255,.35);text-decoration:none;font-size:.82rem;transition:color .2s;}
+.flinks a:hover{color:var(--roxo-vivo);}
+.fcopy{border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;color:rgba(255,255,255,.2);font-size:.75rem;}
+
+/* ─── FADE IN ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* ─── MODAL ─── */
+.moverlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(15,10,42,.6);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:1rem;
+}
+.moverlay.open{display:flex;}
+.mbox{
+  background:#fff;border-radius:24px;
+  padding:2.5rem;max-width:500px;width:100%;
+  position:relative;
+  animation:mboxIn .3s cubic-bezier(.34,1.56,.64,1);
+  max-height:90vh;overflow-y:auto;
+}
+@keyframes mboxIn{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+.mclose{
+  position:absolute;top:1.1rem;right:1.1rem;
+  width:30px;height:30px;border-radius:50%;
+  background:var(--bg2);border:none;cursor:pointer;
+  font-size:.9rem;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.mclose:hover{background:var(--roxo-claro);}
+.mbox h3{font-family:'Lora',serif;font-size:1.4rem;margin-bottom:.9rem;}
+.mbox p{font-size:.875rem;color:var(--texto2);line-height:1.75;margin-bottom:.7rem;font-weight:300;}
+.mbox strong{color:var(--texto);font-weight:600;}
+
+/* ─── CHAT IA LUNA ─── */
+/* FAB */
+.luna-fab{
+  position:fixed;bottom:2rem;right:2rem;z-index:400;
+  width:62px;height:62px;border-radius:50%;
+  background:var(--gradiente);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 8px 30px rgba(109,40,217,.4);
+  transition:transform .3s,box-shadow .3s;
+  animation:lunaPulse 3s infinite;
+}
+.luna-fab:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(109,40,217,.55);}
+@keyframes lunaPulse{
+  0%,100%{box-shadow:0 8px 30px rgba(109,40,217,.4);}
+  50%{box-shadow:0 8px 45px rgba(109,40,217,.7);}
+}
+.luna-tooltip{
+  position:fixed;bottom:6.2rem;right:2rem;z-index:400;
+  background:var(--texto);color:#fff;
+  padding:.4rem .9rem;border-radius:50px;
+  font-size:.75rem;font-weight:500;
+  white-space:nowrap;pointer-events:none;
+  animation:lunaPulse 3s infinite;
+}
+.luna-tooltip::after{
+  content:'';position:absolute;bottom:-5px;right:22px;
+  width:10px;height:10px;background:var(--texto);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+/* CHAT BOX */
+.luna-overlay{
+  display:none;position:fixed;inset:0;z-index:450;
+  align-items:flex-end;justify-content:flex-end;
+  padding:1.5rem;
+}
+.luna-overlay.open{display:flex;}
+.luna-box{
+  width:370px;max-width:calc(100vw - 2rem);
+  height:580px;max-height:calc(100vh - 3rem);
+  background:#fff;border-radius:26px;
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 24px 80px rgba(15,10,42,.22);
+  border:1px solid var(--borda);
+  animation:chatOpen .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes chatOpen{from{opacity:0;transform:scale(.8) translateY(30px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+.luna-head{
+  padding:1.1rem 1.3rem;
+  background:var(--gradiente);
+  display:flex;align-items:center;gap:.8rem;
+  flex-shrink:0;
+}
+.luna-ava{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+}
+.luna-info{flex:1;}
+.luna-info strong{color:#fff;font-size:.92rem;display:block;}
+.luna-info small{color:rgba(255,255,255,.7);font-size:.72rem;font-weight:300;}
+.luna-x{
+  background:rgba(255,255,255,.15);border:none;
+  width:28px;height:28px;border-radius:50%;
+  color:#fff;cursor:pointer;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.luna-x:hover{background:rgba(255,255,255,.3);}
+
+.luna-msgs{
+  flex:1;overflow-y:auto;padding:1rem 1.1rem;
+  display:flex;flex-direction:column;gap:.7rem;
+  scroll-behavior:smooth;
+}
+.luna-msgs::-webkit-scrollbar{width:3px;}
+.luna-msgs::-webkit-scrollbar-thumb{background:var(--borda);border-radius:4px;}
+
+.lmsg{
+  max-width:86%;padding:.65rem .95rem;
+  border-radius:16px;font-size:.84rem;line-height:1.65;
+  animation:msgPop .25s ease;
+}
+@keyframes msgPop{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.lmsg-luna{
+  background:var(--gradiente-suave);
+  color:var(--texto);border-bottom-left-radius:4px;
+  align-self:flex-start;
+  border:1px solid var(--borda);
+}
+.lmsg-user{
+  background:var(--gradiente);
+  color:#fff;border-bottom-right-radius:4px;
+  align-self:flex-end;
+}
+.lmsg-typing{
+  background:var(--gradiente-suave);
+  border:1px solid var(--borda);
+  border-bottom-left-radius:4px;
+  align-self:flex-start;
+  padding:.75rem .95rem;
+  display:none;
+}
+.lmsg-typing.show{display:flex;align-items:center;gap:4px;}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--roxo-vivo);animation:tdot 1.2s infinite;}
+.ldot:nth-child(2){animation-delay:.2s;}
+.ldot:nth-child(3){animation-delay:.4s;}
+
+.luna-sugs{
+  padding:.3rem 1rem .6rem;
+  display:flex;gap:.4rem;flex-wrap:wrap;
+  flex-shrink:0;
+}
+.lsug{
+  background:var(--bg2);border:1px solid var(--borda);
+  color:var(--texto2);padding:.3rem .75rem;
+  border-radius:50px;font-size:.74rem;font-weight:500;
+  cursor:pointer;font-family:inherit;
+  transition:all .2s;white-space:nowrap;
+}
+.lsug:hover{background:var(--roxo-claro);border-color:var(--roxo-vivo);color:var(--roxo);}
+
+.luna-bottom{
+  padding:.7rem 1rem .85rem;
+  border-top:1px solid var(--borda);
+  display:flex;gap:.5rem;align-items:flex-end;
+  flex-shrink:0;
+}
+.luna-input{
+  flex:1;border:1px solid var(--borda);
+  border-radius:14px;padding:.6rem .85rem;
+  font-family:inherit;font-size:.84rem;
+  resize:none;outline:none;
+  color:var(--texto);background:var(--bg);
+  max-height:90px;line-height:1.5;
+  transition:border-color .2s,background .2s;
+}
+.luna-input:focus{border-color:var(--roxo-vivo);background:#fff;}
+.luna-send{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--gradiente);border:none;
+  color:#fff;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;
+  transition:transform .2s,box-shadow .2s;
+}
+.luna-send:hover{transform:scale(1.1);box-shadow:0 4px 14px rgba(109,40,217,.4);}
+.luna-send:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+
+/* ─── RESPIRAÇÃO ─── */
+.resp-tecnicas{
+  display:flex;justify-content:center;gap:.6rem;
+  flex-wrap:wrap;margin-bottom:2.5rem;
+}
+.rtec{
+  background:var(--bg2);border:1.5px solid var(--borda);
+  color:var(--texto2);padding:.5rem 1.3rem;
+  border-radius:50px;font-size:.82rem;font-weight:600;
+  cursor:pointer;font-family:inherit;
+  transition:all .25s;
+}
+.rtec.on{background:var(--gradiente);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(109,40,217,.3);}
+.rtec:hover:not(.on){background:var(--roxo-claro);border-color:var(--roxo-vivo);color:var(--roxo);}
+
+.resp-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3.5rem;align-items:center;max-width:900px;margin:0 auto;
+}
+.resp-circle-wrap{
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.resp-ring-outer{
+  position:relative;width:220px;height:220px;
+}
+.resp-svg{
+  width:220px;height:220px;
+  transform:rotate(-90deg);
+}
+.resp-track{
+  fill:none;stroke:var(--bg2);stroke-width:10;
+}
+.resp-progress{
+  fill:none;stroke:url(#respGrad);stroke-width:10;
+  stroke-linecap:round;
+  stroke-dasharray:603;
+  stroke-dashoffset:603;
+  transition:stroke-dashoffset .5s linear;
+}
+.resp-inner{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+}
+.resp-fase{
+  font-family:'Lora',serif;font-size:1.1rem;font-weight:600;
+  color:var(--texto);margin-bottom:.2rem;
+  transition:all .4s ease;
+}
+.resp-contador{
+  font-family:'Lora',serif;font-size:2.8rem;font-weight:700;
+  color:transparent;background:var(--gradiente);
+  -webkit-background-clip:text;background-clip:text;
+  line-height:1;min-height:3rem;
+}
+.resp-ciclo{font-size:.72rem;color:var(--texto3);margin-top:.3rem;font-weight:400;}
+
+/* Pulsar animação do círculo externo */
+.resp-ring-outer::after{
+  content:'';position:absolute;inset:-12px;
+  border-radius:50%;
+  border:2px solid rgba(109,40,217,.08);
+  animation:respPulse 3s ease-in-out infinite;
+}
+@keyframes respPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.04);opacity:.5;}}
+
+.resp-info{}
+.resp-desc h3{font-family:'Lora',serif;font-size:1.25rem;font-weight:600;margin-bottom:.5rem;}
+.resp-desc p{font-size:.875rem;color:var(--texto2);line-height:1.75;font-weight:300;margin-bottom:1.2rem;}
+.resp-passos{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;}
+.rp-item{display:flex;align-items:center;gap:.75rem;font-size:.84rem;color:var(--texto2);font-weight:400;}
+.rp-n{
+  min-width:42px;padding:.25rem .5rem;
+  border-radius:8px;font-size:.78rem;font-weight:700;
+  text-align:center;
+}
+.resp-acoes{display:flex;gap:.7rem;margin-bottom:1.2rem;flex-wrap:wrap;}
+.resp-btn-play{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gradiente);color:#fff;
+  border:none;padding:.75rem 1.5rem;
+  border-radius:50px;font-size:.9rem;font-weight:600;
+  cursor:pointer;font-family:inherit;
+  transition:transform .2s,box-shadow .2s;
+  flex:1;justify-content:center;
+}
+.resp-btn-play:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(109,40,217,.35);}
+.resp-btn-reset{
+  background:var(--bg2);border:1.5px solid var(--borda);
+  color:var(--texto2);padding:.75rem 1.2rem;
+  border-radius:50px;font-size:.85rem;font-weight:600;
+  cursor:pointer;font-family:inherit;
+  transition:all .2s;
+}
+.resp-btn-reset:hover{background:var(--roxo-claro);color:var(--roxo);border-color:var(--roxo-vivo);}
+.resp-bene{
+  display:flex;gap:.5rem;flex-wrap:wrap;
+}
+.rb-item{
+  background:var(--gradiente-suave);
+  border:1px solid var(--borda);
+  border-radius:50px;padding:.3rem .85rem;
+  font-size:.75rem;color:var(--texto2);font-weight:500;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .nav-links{display:none;}
+  .resp-wrap{grid-template-columns:1fr;gap:2rem;}
+  .resp-info{text-align:center;}
+  .resp-passos{align-items:center;}
+  .resp-acoes{justify-content:center;}
+  .resp-bene{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-dot"></div>
+    Mente Estudantil
+  </a>
+  <ul class="nav-links">
+    <li><a href="#informacoes">Saúde Mental</a></li>
+    <li><a href="#bem-estar">Bem-estar</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#ajuda">Buscar Ajuda</a></li>
+  </ul>
+  <button class="nav-cta" onclick="abrirLuna()">💜 Falar com Luna</button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-shapes">
+    <div class="shape sh1"></div>
+    <div class="shape sh2"></div>
+    <div class="shape sh3"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-text">
+      <div class="hero-pill">Sua saúde mental importa</div>
+      <h1>Você não precisa<br>carregar isso <em>sozinho</em></h1>
+      <p class="hero-desc">Um espaço seguro e acolhedor para estudantes que enfrentam ansiedade, estresse, pressão escolar e desafios emocionais. Aqui você encontra informação, apoio e uma IA pronta para ouvir você.</p>
+      <div class="hero-actions">
+        <button class="btn-grad" onclick="abrirLuna()">💬 Conversar com a Luna</button>
+        <a href="#informacoes" class="btn-outline">Explorar conteúdos →</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hstat-num">73%</div>
+          <div class="hstat-label">dos estudantes sentem ansiedade</div>
+        </div>
+        <div>
+          <div class="hstat-num">1 em 5</div>
+          <div class="hstat-label">jovens têm transtorno mental</div>
+        </div>
+        <div>
+          <div class="hstat-num">CVV 188</div>
+          <div class="hstat-label">apoio gratuito em crise</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-wrap">
+        <div class="hero-card-main">
+          <div class="hc-avatar">🌙</div>
+          <div class="hc-title">Luna — IA de Apoio</div>
+          <div class="hc-sub">Mente Estudantil · Online agora</div>
+          <div class="hc-msg">"Oi! Estou aqui para ouvir você. Me conta como está se sentindo hoje?"</div>
+          <div class="hc-typing">
+            <div class="tdot"></div>
+            <div class="tdot"></div>
+            <div class="tdot"></div>
+          </div>
+        </div>
+        <div class="hero-card-float float1">
+          <span class="float-emoji">😌</span>
+          <span class="float-label">Sem julgamentos</span>
+          <span class="float-val">Confidencial e seguro</span>
+        </div>
+        <div class="hero-card-float float2">
+          <span class="float-emoji">🕐</span>
+          <span class="float-label">Disponível 24h</span>
+          <span class="float-val">A qualquer hora</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INFORMAÇÕES ─── -->
+<section id="informacoes" class="infos-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-label">Saúde Mental</div>
+      <h2 class="sec-title">Entenda o que você<br>está <em>sentindo</em></h2>
+      <p class="sec-desc">Conhecimento é o primeiro passo. Saiba mais sobre os temas que mais afetam estudantes e como reconhecer os sinais.</p>
+    </div>
+    <div class="infos-grid">
+      <div class="info-card reveal" onclick="abrirModal('ansiedade')">
+        <div class="ic-icon ic-azul">😰</div>
+        <h3>Ansiedade Escolar</h3>
+        <p>Preocupação excessiva com provas, medo de errar e sintomas físicos como coração acelerado são sinais comuns que merecem atenção.</p>
+        <span class="ic-link">Saiba mais →</span>
+      </div>
+      <div class="info-card reveal" onclick="abrirModal('burnout')">
+        <div class="ic-icon ic-roxo">🔥</div>
+        <h3>Burnout Estudantil</h3>
+        <p>O esgotamento mental por excesso de cobranças e falta de descanso pode fazer você se sentir completamente vazio e sem energia.</p>
+        <span class="ic-link">Saiba mais →</span>
+      </div>
+      <div class="info-card reveal" onclick="abrirModal('depressao')">
+        <div class="ic-icon ic-mix">😔</div>
+        <h3>Depressão em Jovens</h3>
+        <p>Vai além da tristeza comum. Em jovens se manifesta também como irritabilidade, isolamento e queda no rendimento escolar.</p>
+        <span class="ic-link">Saiba mais →</span>
+      </div>
+      <div class="info-card reveal" onclick="abrirModal('pressao')">
+        <div class="ic-icon ic-azul">🫂</div>
+        <h3>Pressão Social</h3>
+        <p>Comparações com colegas, redes sociais e expectativas familiares criam pressões invisíveis que pesam muito na sua saúde emocional.</p>
+        <span class="ic-link">Saiba mais →</span>
+      </div>
+      <div class="info-card reveal" onclick="abrirModal('sono')">
+        <div class="ic-icon ic-roxo">😴</div>
+        <h3>Sono e Aprendizado</h3>
+        <p>A falta de sono afeta memória, concentração e humor. Estudantes que dormem bem têm desempenho até 30% melhor em avaliações.</p>
+        <span class="ic-link">Saiba mais →</span>
+      </div>
+      <div class="info-card reveal" onclick="abrirModal('autoconhecimento')">
+        <div class="ic-icon ic-mix">🧠</div>
+        <h3>Autoconhecimento</h3>
+        <p>Identificar suas emoções, limites e necessidades é uma habilidade essencial que transforma completamente sua relação com a escola.</p>
+        <span class="ic-link">Saiba mais →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BEM-ESTAR ─── -->
+<section id="bem-estar" class="bem-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-label">Dicas Práticas</div>
+      <h2 class="sec-title">Hábitos que <em>transformam</em><br>seu dia a dia</h2>
+      <p class="sec-desc">Pequenas mudanças consistentes fazem grandes diferenças na sua saúde emocional e rendimento escolar.</p>
+    </div>
+    <div class="dicas-grid">
+      <div class="dica reveal"><div class="dica-n">01</div><div><h4>Respire conscientemente</h4><p>Técnica 4-7-8: inspire por 4s, segure 7s, expire 8s. Reduz ansiedade em minutos.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">02</div><div><h4>Pause a cada 25 minutos</h4><p>Técnica Pomodoro: blocos focados + pausas curtas mantêm o cérebro mais eficiente.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">03</div><div><h4>Escreva seus sentimentos</h4><p>5 minutos de diário emocional por dia ajuda a organizar pensamentos e reduzir a ansiedade.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">04</div><div><h4>Mova seu corpo</h4><p>20 minutos de caminhada libera endorfinas e melhora o humor por até 12 horas.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">05</div><div><h4>Limite as redes sociais</h4><p>Máximo 30 min/dia. Comparações online são uma das maiores fontes de ansiedade em jovens.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">06</div><div><h4>Proteja seu sono</h4><p>Durma 8–10h por noite. Desligue as telas 1 hora antes de dormir para um descanso real.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">07</div><div><h4>Converse com alguém</h4><p>Compartilhar dificuldades com amigos, família ou profissional reduz muito o peso emocional.</p></div></div>
+      <div class="dica reveal"><div class="dica-n">08</div><div><h4>Pratique a gratidão</h4><p>Anote 3 coisas boas que aconteceram hoje. Treina o cérebro para focar no positivo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CRONÔMETRO DE RESPIRAÇÃO ─── -->
+<section id="respiracao" style="padding:5.5rem clamp(1rem,5vw,4rem);background:#fff;border-top:1px solid var(--borda);">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <div class="sec-label" style="justify-content:center;">Exercício Rápido</div>
+      <h2 class="sec-title" style="text-align:center;">Cronômetro de <em>Respiração</em></h2>
+      <p class="sec-desc" style="text-align:center;margin:0 auto;">Quando a ansiedade apertar, respire com a gente. A técnica 4-7-8 acalma o sistema nervoso em minutos.</p>
+    </div>
+
+    <!-- Seletor de técnica -->
+    <div class="resp-tecnicas reveal">
+      <button class="rtec on" onclick="selecionarTec(this,'478')" data-tec="478">4-7-8 · Acalmar</button>
+      <button class="rtec" onclick="selecionarTec(this,'box')" data-tec="box">Box · Focar</button>
+      <button class="rtec" onclick="selecionarTec(this,'coerente')" data-tec="coerente">Coerente · Equilibrar</button>
+    </div>
+
+    <div class="resp-wrap reveal">
+      <!-- Círculo animado -->
+      <div class="resp-circle-wrap">
+        <div class="resp-ring-outer">
+          <svg class="resp-svg" viewBox="0 0 220 220">
+            <defs>
+              <linearGradient id="respGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1D4ED8"/>
+                <stop offset="100%" style="stop-color:#6D28D9"/>
+              </linearGradient>
+            </defs>
+            <circle class="resp-track" cx="110" cy="110" r="96"/>
+            <circle class="resp-progress" id="respProgress" cx="110" cy="110" r="96"/>
+          </svg>
+        </div>
+        <div class="resp-inner">
+          <div class="resp-fase" id="respFase">Pronto?</div>
+          <div class="resp-contador" id="respContador">—</div>
+          <div class="resp-ciclo" id="respCiclo">Ciclo 0 / 4</div>
+        </div>
+      </div>
+
+      <!-- Info técnica -->
+      <div class="resp-info">
+        <div class="resp-desc" id="respDesc">
+          <h3>Técnica 4-7-8</h3>
+          <p>Criada pelo Dr. Andrew Weil, esta técnica ativa o sistema nervoso parassimpático e reduz a ansiedade rapidamente.</p>
+          <div class="resp-passos" id="respPassos">
+            <div class="rp-item"><span class="rp-n" style="background:var(--azul-claro);color:var(--azul)">4s</span><span>Inspire pelo nariz</span></div>
+            <div class="rp-item"><span class="rp-n" style="background:var(--roxo-claro);color:var(--roxo)">7s</span><span>Segure o ar</span></div>
+            <div class="rp-item"><span class="rp-n" style="background:linear-gradient(135deg,var(--azul-claro),var(--roxo-claro));color:var(--roxo-escuro)">8s</span><span>Expire pela boca</span></div>
+          </div>
+        </div>
+        <div class="resp-acoes">
+          <button class="resp-btn-play" id="respPlay" onclick="toggleRespiracao()">
+            <span id="respPlayIcon">▶</span>
+            <span id="respPlayTxt">Iniciar respiração</span>
+          </button>
+          <button class="resp-btn-reset" onclick="resetarRespiracao()">↺ Reiniciar</button>
+        </div>
+        <div class="resp-bene">
+          <div class="rb-item">😌 Reduz ansiedade</div>
+          <div class="rb-item">🧠 Melhora o foco</div>
+          <div class="rb-item">😴 Ajuda a dormir</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FRASES ─── -->
+<section style="padding:5.5rem clamp(1rem,5vw,4rem);">
+  <div class="container">
+    <div class="frases-wrap reveal">
+      <div class="frase-slide on">
+        <p class="frase-q">"Você é mais forte do que acredita, mais talentoso do que imagina e mais capaz do que pensa."</p>
+        <p class="frase-a">— A.A. Milne</p>
+      </div>
+      <div class="frase-slide">
+        <p class="frase-q">"Não meça seu sucesso pelas notas que você tira, mas pelo quanto você cresceu como pessoa."</p>
+        <p class="frase-a">— Mente Estudantil</p>
+      </div>
+      <div class="frase-slide">
+        <p class="frase-q">"Pedir ajuda não é fraqueza — é o ato mais corajoso que um estudante pode fazer."</p>
+        <p class="frase-a">— Mente Estudantil</p>
+      </div>
+      <div class="frase-slide">
+        <p class="frase-q">"Cada dia difícil que você supera é uma prova de que você é capaz de superar o próximo."</p>
+        <p class="frase-a">— Anônimo</p>
+      </div>
+      <div class="frase-slide">
+        <p class="frase-q">"Sua saúde mental é tão importante quanto qualquer prova ou trabalho escolar."</p>
+        <p class="frase-a">— Mente Estudantil</p>
+      </div>
+      <div class="frase-nav">
+        <button class="fnavdot on" onclick="irFrase(0)"></button>
+        <button class="fnavdot" onclick="irFrase(1)"></button>
+        <button class="fnavdot" onclick="irFrase(2)"></button>
+        <button class="fnavdot" onclick="irFrase(3)"></button>
+        <button class="fnavdot" onclick="irFrase(4)"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BLOG ─── -->
+<section id="blog" class="blog-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-label">Blog Educativo</div>
+      <h2 class="sec-title">Conteúdo para sua <em>jornada</em></h2>
+      <p class="sec-desc">Artigos e guias criados para te ajudar a entender e cuidar melhor da sua saúde mental no dia a dia escolar.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-thumb bt1">📚</div>
+        <div class="blog-body">
+          <div class="blog-tag btag-azul">Rotina Saudável</div>
+          <h3>Como criar uma rotina de estudos que não te adoeça</h3>
+          <p>Equilibrar produtividade e descanso é uma arte. Veja como montar uma rotina que funciona de verdade.</p>
+          <div class="blog-footer">
+            <span class="blog-meta-info">⏱ 5 min de leitura</span>
+            <span class="blog-read" onclick="abrirModal('blog1')">Ler artigo →</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-thumb bt2">🧘</div>
+        <div class="blog-body">
+          <div class="blog-tag btag-roxo">Bem-estar</div>
+          <h3>Mindfulness para estudantes: como aplicar no dia a dia</h3>
+          <p>A atenção plena pode transformar sua relação com o estudo, as provas e com você mesmo.</p>
+          <div class="blog-footer">
+            <span class="blog-meta-info">⏱ 7 min de leitura</span>
+            <span class="blog-read" onclick="abrirModal('blog2')">Ler artigo →</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-thumb bt3">💬</div>
+        <div class="blog-body">
+          <div class="blog-tag btag-roxo">Desafios Escolares</div>
+          <h3>Quando o medo de reprovar vira ansiedade: como lidar?</h3>
+          <p>Transforme o medo paralisante em motivação saudável com estratégias práticas e comprovadas.</p>
+          <div class="blog-footer">
+            <span class="blog-meta-info">⏱ 6 min de leitura</span>
+            <span class="blog-read" onclick="abrirModal('blog3')">Ler artigo →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AJUDA ─── -->
+<section id="ajuda" class="ajuda-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-label">Orientação</div>
+      <h2 class="sec-title">Como e onde <em>buscar apoio</em></h2>
+      <p class="sec-desc">Buscar ajuda é um sinal de coragem, não de fraqueza. Existem muitas formas de cuidar da sua saúde mental.</p>
+    </div>
+    <div class="ajuda-grid">
+      <div class="ajuda-card reveal">
+        <span class="ajuda-ico">🏫</span>
+        <h3>Psicólogo Escolar</h3>
+        <p>A maioria das escolas tem profissionais disponíveis. Procure a orientação pedagógica e solicite um atendimento gratuito.</p>
+        <button class="ajuda-btn ab1" onclick="abrirModal('ajuda1')">Como acesso?</button>
+      </div>
+      <div class="ajuda-card reveal">
+        <span class="ajuda-ico">💻</span>
+        <h3>Terapia Acessível</h3>
+        <p>O CAPS oferece atendimento psicológico gratuito pelo SUS. Plataformas online como Zenklub têm opções acessíveis.</p>
+        <button class="ajuda-btn ab2" onclick="abrirModal('ajuda2')">Conhecer opções</button>
+      </div>
+      <div class="ajuda-card reveal">
+        <span class="ajuda-ico">👨‍👩‍👧</span>
+        <h3>Conversa Familiar</h3>
+        <p>Abrir-se com pais, irmãos ou adultos de confiança é um passo muito importante. Não enfrente tudo sozinho.</p>
+        <button class="ajuda-btn ab3" onclick="abrirModal('ajuda3')">Como abordar?</button>
+      </div>
+      <div class="ajuda-card reveal">
+        <span class="ajuda-ico">🤝</span>
+        <h3>Grupos de Apoio</h3>
+        <p>Comunidades de estudantes que passam por experiências similares oferecem acolhimento e troca de estratégias.</p>
+        <button class="ajuda-btn ab4" onclick="abrirModal('ajuda4')">Encontrar grupos</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CRISE ─── -->
+<div class="crise">
+  <div class="container">
+    <h2>🆘 Se você está em crise agora</h2>
+    <p>Você não precisa passar por isso sozinho. Ligue gratuitamente agora:</p>
+    <div class="tels">
+      <div class="tel">188 <span>CVV — Centro de Valorização da Vida</span></div>
+      <div class="tel">192 <span>SAMU — Emergências Médicas</span></div>
+      <div class="tel">100 <span>Disque 100 — Direitos Humanos</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">✦ Mente Estudantil</div>
+    <p>Um espaço criado com cuidado para todos os estudantes que precisam de apoio. Sua jornada importa, e você não está sozinho.</p>
+    <div class="flinks">
+      <a href="#informacoes">Saúde Mental</a>
+      <a href="#bem-estar">Bem-estar</a>
+      <a href="#blog">Blog</a>
+      <a href="#ajuda">Buscar Ajuda</a>
+    </div>
+    <div class="fcopy">© 2025 Mente Estudantil · Feito com 💜 para estudantes brasileiros</div>
+  </div>
+</footer>
+
+<!-- ─── LUNA FAB ─── -->
+<div class="luna-tooltip" id="lunaTooltip">💜 Precisa desabafar?</div>
+<button class="luna-fab" id="lunaFab" onclick="abrirLuna()" aria-label="Conversar com Luna IA de apoio">🌙</button>
+
+<!-- ─── LUNA CHAT ─── -->
+<div class="luna-overlay" id="lunaOverlay">
+  <div class="luna-box">
+    <div class="luna-head">
+      <div class="luna-ava">🌙</div>
+      <div class="luna-info">
+        <strong>Luna — IA de Apoio Emocional</strong>
+        <small>Aqui para ouvir você, sem julgamentos 💜</small>
+      </div>
+      <button class="luna-x" onclick="fecharLuna()" aria-label="Fechar chat">✕</button>
+    </div>
+    <div class="luna-msgs" id="lunaMsgs">
+      <div class="lmsg lmsg-luna">Olá! Sou a Luna, sua companheira de apoio emocional aqui na Mente Estudantil 💜<br><br>Pode falar comigo sobre qualquer coisa que esteja te pesando — ansiedade, estresse, pressão escolar, sentimentos difíceis... Estou aqui para ouvir você com atenção e sem julgamentos.</div>
+    </div>
+    <div class="lmsg-typing" id="lunaTyping">
+      <div class="ldot"></div><div class="ldot"></div><div class="ldot"></div>
+    </div>
+    <div class="luna-sugs" id="lunaSugs">
+      <button class="lsug" onclick="enviarSug(this)">😰 Estou muito ansioso(a)</button>
+      <button class="lsug" onclick="enviarSug(this)">📚 Pressão nos estudos</button>
+      <button class="lsug" onclick="enviarSug(this)">😔 Me sinto triste</button>
+      <button class="lsug" onclick="enviarSug(this)">😴 Não consigo dormir</button>
+      <button class="lsug" onclick="enviarSug(this)">😤 Brigas em casa</button>
+    </div>
+    <div class="luna-bottom">
+      <textarea class="luna-input" id="lunaInput" placeholder="Escreva o que está sentindo..." rows="1"
+        onkeydown="lunaKey(event)" oninput="lunaResize(this)"></textarea>
+      <button class="luna-send" id="lunaSend" onclick="lunaEnviar()" aria-label="Enviar mensagem">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MODAL CONTEÚDO ─── -->
+<div class="moverlay" id="modalOver">
+  <div class="mbox">
+    <button class="mclose" onclick="fecharModal()">✕</button>
+    <h3 id="mTitulo"></h3>
+    <div id="mCorpo"></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════ CONTEÚDOS ══════════════ */
+const conteudos = {
+  ansiedade:{
+    t:"😰 Ansiedade Escolar",
+    c:`<p>A ansiedade escolar afeta milhões de jovens e se manifesta como preocupação excessiva com desempenho, medo de julgamento e sintomas físicos como taquicardia e suor antes de avaliações.</p>
+    <p><strong>Sinais de alerta:</strong> dificuldade de concentração, insônia antes de provas, dores de cabeça frequentes, vontade de faltar às aulas.</p>
+    <p><strong>O que ajuda:</strong> técnicas de respiração, preparação gradual, conversa com professores e apoio psicológico.</p>
+    <p>Sentir um pouco de ansiedade é normal. O problema é quando ela paralisa — nesse caso, buscar ajuda é essencial.</p>`
+  },
+  burnout:{
+    t:"🔥 Burnout Estudantil",
+    c:`<p>O burnout é um estado de esgotamento físico e emocional causado por pressão crônica e falta de recuperação. É mais comum em estudantes do que se imagina.</p>
+    <p><strong>Sinais de alerta:</strong> sensação de vazio, dificuldade de aprender coisas novas, irritabilidade, desinteresse em atividades antes prazerosas.</p>
+    <p><strong>Prevenção:</strong> estabeleça limites de horário de estudo, reserve tempo para lazer e não deixe cobranças se acumularem.</p>
+    <p>O descanso não é luxo — é parte essencial do aprendizado.</p>`
+  },
+  depressao:{
+    t:"😔 Depressão em Jovens",
+    c:`<p>A depressão vai além de tristeza passageira. Em jovens, pode se manifestar como irritabilidade, isolamento, queda no rendimento e perda de interesse em tudo.</p>
+    <p><strong>Sinais de alerta:</strong> tristeza persistente por mais de 2 semanas, mudanças no sono e apetite, pensamentos negativos recorrentes, isolamento social.</p>
+    <p><strong>O que fazer:</strong> a depressão tem tratamento eficaz. Procure um profissional de saúde mental — você não precisa sofrer em silêncio.</p>`
+  },
+  pressao:{
+    t:"🫂 Pressão Social",
+    c:`<p>A pressão para se encaixar, ter boas notas e corresponder às expectativas familiares pode ser esmagadora e invisível para os outros.</p>
+    <p><strong>Impactos:</strong> baixa autoestima, comparação constante, sensação de nunca ser suficiente, medo de decepcionar.</p>
+    <p><strong>Estratégias:</strong> limite redes sociais, aprenda a dizer não, celebre conquistas pessoais independente das notas e busque apoio emocional.</p>
+    <p>Você é muito mais do que sua média escolar.</p>`
+  },
+  sono:{
+    t:"😴 Sono e Aprendizado",
+    c:`<p>Durante o sono o cérebro consolida memórias e processa o aprendizado do dia. Estudar muito e dormir pouco é contraproducente.</p>
+    <p><strong>Recomendação:</strong> adolescentes precisam de 8–10h por noite. Jovens adultos de 7–9h.</p>
+    <p><strong>Dicas:</strong> mantenha horários regulares, evite cafeína após 16h, deixe o quarto escuro e fresco, desligue telas 1h antes de dormir.</p>
+    <p>Uma noite bem dormida vale mais que horas extras de estudo.</p>`
+  },
+  autoconhecimento:{
+    t:"🧠 Autoconhecimento",
+    c:`<p>Conhecer a si mesmo significa entender suas emoções, reconhecer seus limites e identificar o que te motiva e o que te drena.</p>
+    <p><strong>Práticas úteis:</strong> escrever em um diário, meditação, conversar com pessoas de confiança, fazer terapia.</p>
+    <p><strong>Por que importa:</strong> estudantes que se conhecem bem tomam melhores decisões, lidam melhor com frustrações e constroem relações mais saudáveis.</p>
+    <p>Investir em autoconhecimento é o melhor investimento que você pode fazer.</p>`
+  },
+  blog1:{
+    t:"📚 Rotina saudável de estudos",
+    c:`<p>Uma rotina equilibrada divide o dia entre estudo focado, descanso ativo e lazer. Sem esse equilíbrio, o cérebro satura e o rendimento cai.</p>
+    <p><strong>Monte sua rotina assim:</strong></p>
+    <p>• Estude em blocos de 25–50 minutos com pausas de 5–10 minutos<br>
+    • Reserve ao menos 1h por dia para atividade física ou lazer<br>
+    • Defina um horário de "desligar" sem estudo nem escola<br>
+    • Durma e acorde nos mesmos horários, mesmo nos fins de semana</p>
+    <p>Consistência supera intensidade. 1h por dia todos os dias é mais eficaz que 7h em um único dia.</p>`
+  },
+  blog2:{
+    t:"🧘 Mindfulness para estudantes",
+    c:`<p>Mindfulness é a prática de prestar atenção plena ao momento presente, sem julgamentos. Reduz ansiedade e melhora o foco.</p>
+    <p><strong>Como começar hoje:</strong></p>
+    <p>• Respire profundamente por 2 minutos antes de qualquer avaliação<br>
+    • Ao estudar, foque em uma única tarefa de cada vez<br>
+    • Use apps como Headspace ou Calm (versões gratuitas)<br>
+    • Antes de dormir, relaxe conscientemente cada parte do corpo</p>
+    <p>Com 5–10 minutos por dia você já sente diferença em semanas.</p>`
+  },
+  blog3:{
+    t:"💬 Medo de reprovar: como lidar?",
+    c:`<p>O medo de reprovar é uma das formas mais paralisantes de ansiedade. Quando excessivo, prejudica justamente o que você quer proteger: seu desempenho.</p>
+    <p><strong>Transformando o medo:</strong></p>
+    <p>• Separe seu valor pessoal do seu desempenho — você não é sua nota<br>
+    • Foque no processo: "O que posso fazer hoje para melhorar?"<br>
+    • Converse com professores sobre suas dificuldades<br>
+    • Lembre que reprovar não é o fim do mundo, é uma oportunidade de recomeçar</p>
+    <p>Se o medo está impedindo você de viver, busque apoio psicológico. Isso é cuidado, não fraqueza.</p>`
+  },
+  ajuda1:{
+    t:"🏫 Psicólogo Escolar",
+    c:`<p>A maioria das escolas públicas e privadas conta com serviços de apoio psicológico ou orientação educacional.</p>
+    <p><strong>Como acessar:</strong></p>
+    <p>• Procure a coordenação pedagógica ou direção da sua escola<br>
+    • Explique que está passando por dificuldades emocionais<br>
+    • Solicite encaminhamento para o psicólogo ou orientador<br>
+    • O atendimento é gratuito e confidencial</p>
+    <p>Se sua escola não tiver esse serviço, peça que busquem parceria com o CAPS da sua cidade.</p>`
+  },
+  ajuda2:{
+    t:"💻 Terapia Acessível",
+    c:`<p>Existem diversas opções de apoio psicológico gratuito ou de baixo custo para estudantes no Brasil.</p>
+    <p><strong>Opções gratuitas:</strong></p>
+    <p>• <strong>CAPS</strong> (Centro de Atenção Psicossocial) — pelo SUS, gratuito<br>
+    • <strong>UBS</strong> (Unidade Básica de Saúde) — encaminhamento gratuito<br>
+    • <strong>Clínicas-escola</strong> de psicologia das universidades<br>
+    • <strong>CVV</strong> (188) — apoio emocional gratuito 24h</p>
+    <p><strong>Opções com desconto:</strong> Zenklub, Vittude e outras plataformas têm planos a partir de R$80/sessão.</p>`
+  },
+  ajuda3:{
+    t:"👨‍👩‍👧 Como conversar com a família",
+    c:`<p>Falar sobre saúde mental com a família pode ser difícil, mas é um passo muito importante.</p>
+    <p><strong>Dicas para iniciar a conversa:</strong></p>
+    <p>• Escolha um momento calmo, sem pressa<br>
+    • Comece com "Eu estou me sentindo..." em vez de acusações<br>
+    • Seja específico sobre o que está sentindo e o que precisa<br>
+    • Peça para ser ouvido antes de receber conselhos<br>
+    • Se a família não entender, procure um adulto de confiança — professor, tio, ou amigo mais velho</p>`
+  },
+  ajuda4:{
+    t:"🤝 Grupos de Apoio",
+    c:`<p>Estar com pessoas que entendem o que você passa é muito poderoso para a recuperação emocional.</p>
+    <p><strong>Onde encontrar:</strong></p>
+    <p>• CAPS da sua cidade frequentemente oferecem grupos de apoio<br>
+    • Igrejas e comunidades religiosas muitas vezes têm grupos de jovens<br>
+    • Redes sociais têm comunidades de saúde mental estudantil<br>
+    • Universidades têm grupos de apoio aos estudantes</p>
+    <p>Lembre-se: você não precisa enfrentar os desafios da vida escolar sozinho.</p>`
+  }
+};
+
+/* ── Modal ── */
+function abrirModal(id){
+  const c = conteudos[id]; if(!c) return;
+  document.getElementById('mTitulo').textContent = c.t;
+  document.getElementById('mCorpo').innerHTML = c.c;
+  document.getElementById('modalOver').classList.add('open');
+}
+function fecharModal(){ document.getElementById('modalOver').classList.remove('open'); }
+document.getElementById('modalOver').addEventListener('click', e=>{ if(e.target===e.currentTarget) fecharModal(); });
+
+/* ── Carousel frases ── */
+let fIdx=0;
+const fSlides = document.querySelectorAll('.frase-slide');
+const fDots = document.querySelectorAll('.fnavdot');
+function irFrase(n){
+  fSlides[fIdx].classList.remove('on'); fDots[fIdx].classList.remove('on');
+  fIdx=n; fSlides[fIdx].classList.add('on'); fDots[fIdx].classList.add('on');
+}
+setInterval(()=>irFrase((fIdx+1)%fSlides.length), 5500);
+
+/* ── Reveal on scroll ── */
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'),i*90); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ══════════════ CRONÔMETRO RESPIRAÇÃO ══════════════ */
+const TECNICAS = {
+  '478': {
+    nome:'Técnica 4-7-8',
+    desc:'Criada pelo Dr. Andrew Weil, esta técnica ativa o sistema nervoso parassimpático e reduz a ansiedade rapidamente.',
+    fases:[
+      {label:'Inspire',dur:4,cor:'var(--azul-claro)',corTxt:'var(--azul)'},
+      {label:'Segure',dur:7,cor:'var(--roxo-claro)',corTxt:'var(--roxo)'},
+      {label:'Expire',dur:8,cor:'linear-gradient(135deg,var(--azul-claro),var(--roxo-claro))',corTxt:'var(--roxo-escuro)'}
+    ],
+    passos:['4s — Inspire pelo nariz','7s — Segure o ar','8s — Expire pela boca']
+  },
+  'box': {
+    nome:'Respiração Box',
+    desc:'Usada por atletas e militares para manter o foco sob pressão. Quatro tempos iguais criam equilíbrio e concentração.',
+    fases:[
+      {label:'Inspire',dur:4,cor:'var(--azul-claro)',corTxt:'var(--azul)'},
+      {label:'Segure',dur:4,cor:'var(--roxo-claro)',corTxt:'var(--roxo)'},
+      {label:'Expire',dur:4,cor:'var(--azul-claro)',corTxt:'var(--azul)'},
+      {label:'Segure',dur:4,cor:'var(--roxo-claro)',corTxt:'var(--roxo)'}
+    ],
+    passos:['4s — Inspire pelo nariz','4s — Segure o ar','4s — Expire pela boca','4s — Segure vazio']
+  },
+  'coerente': {
+    nome:'Respiração Coerente',
+    desc:'Cinco respirações por minuto sincronizam coração e pulmão, reduzindo estresse e melhorando o equilíbrio emocional.',
+    fases:[
+      {label:'Inspire',dur:6,cor:'var(--azul-claro)',corTxt:'var(--azul)'},
+      {label:'Expire',dur:6,cor:'var(--roxo-claro)',corTxt:'var(--roxo)'}
+    ],
+    passos:['6s — Inspire lentamente pelo nariz','6s — Expire lentamente pela boca']
+  }
+};
+
+let tecAtual = '478';
+let respAtivo = false;
+let respTimer = null;
+let respFaseIdx = 0;
+let respSegundos = 0;
+let respCicloAtual = 0;
+const TOTAL_CICLOS = 4;
+const CIRCUM = 2 * Math.PI * 96; // ~603
+
+function selecionarTec(btn, tec){
+  document.querySelectorAll('.rtec').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  tecAtual = tec;
+  resetarRespiracao();
+  atualizarDescricao();
+}
+
+function atualizarDescricao(){
+  const t = TECNICAS[tecAtual];
+  const passosHTML = t.fases.map(f=>`<div class="rp-item"><span class="rp-n" style="background:${f.cor};color:${f.corTxt}">${f.dur}s</span><span>${f.label} ${f.label==='Inspire'?'pelo nariz':f.label==='Expire'?'pela boca':'o ar'}</span></div>`).join('');
+  document.getElementById('respPassos').innerHTML = passosHTML;
+  const d = document.getElementById('respDesc');
+  d.querySelector('h3').textContent = t.nome;
+  d.querySelector('p').textContent = t.desc;
+}
+
+function toggleRespiracao(){
+  if(respAtivo) pausarRespiracao();
+  else iniciarRespiracao();
+}
+
+function iniciarRespiracao(){
+  respAtivo = true;
+  document.getElementById('respPlayIcon').textContent = '⏸';
+  document.getElementById('respPlayTxt').textContent = 'Pausar';
+  correrFase();
+}
+
+function pausarRespiracao(){
+  respAtivo = false;
+  clearInterval(respTimer);
+  document.getElementById('respPlayIcon').textContent = '▶';
+  document.getElementById('respPlayTxt').textContent = 'Continuar';
+}
+
+function resetarRespiracao(){
+  clearInterval(respTimer);
+  respAtivo = false;
+  respFaseIdx = 0;
+  respSegundos = 0;
+  respCicloAtual = 0;
+  document.getElementById('respPlayIcon').textContent = '▶';
+  document.getElementById('respPlayTxt').textContent = 'Iniciar respiração';
+  document.getElementById('respFase').textContent = 'Pronto?';
+  document.getElementById('respContador').textContent = '—';
+  document.getElementById('respCiclo').textContent = 'Ciclo 0 / '+TOTAL_CICLOS;
+  document.getElementById('respProgress').style.strokeDashoffset = CIRCUM;
+}
+
+function correrFase(){
+  const tec = TECNICAS[tecAtual];
+  const fase = tec.fases[respFaseIdx];
+  respSegundos = fase.dur;
+
+  document.getElementById('respFase').textContent = fase.label;
+  document.getElementById('respContador').textContent = respSegundos;
+  const progressTotal = fase.dur;
+  let elapsed = 0;
+
+  clearInterval(respTimer);
+  respTimer = setInterval(()=>{
+    if(!respAtivo){ clearInterval(respTimer); return; }
+    elapsed++;
+    respSegundos--;
+    document.getElementById('respContador').textContent = respSegundos > 0 ? respSegundos : '✓';
+
+    // Progresso no anel
+    const pct = elapsed / progressTotal;
+    const offset = CIRCUM - (pct * CIRCUM);
+    document.getElementById('respProgress').style.strokeDashoffset = offset;
+
+    if(elapsed >= progressTotal){
+      clearInterval(respTimer);
+      // Próxima fase
+      respFaseIdx++;
+      if(respFaseIdx >= tec.fases.length){
+        respFaseIdx = 0;
+        respCicloAtual++;
+        document.getElementById('respCiclo').textContent = `Ciclo ${respCicloAtual} / ${TOTAL_CICLOS}`;
+        if(respCicloAtual >= TOTAL_CICLOS){
+          // Concluído
+          respAtivo = false;
+          document.getElementById('respFase').textContent = '✨ Concluído!';
+          document.getElementById('respContador').textContent = '😌';
+          document.getElementById('respPlayIcon').textContent = '▶';
+          document.getElementById('respPlayTxt').textContent = 'Repetir';
+          document.getElementById('respProgress').style.strokeDashoffset = 0;
+          respCicloAtual = 0; respFaseIdx = 0;
+          return;
+        }
+      }
+      if(respAtivo) setTimeout(()=>correrFase(), 400);
+    }
+  }, 1000);
+}
+
+// Inicializar descrição
+atualizarDescricao();
+
+let lunaHistorico = [];
+let lunaOcupada = false;
+
+function abrirLuna(){
+  document.getElementById('lunaOverlay').classList.add('open');
+  document.getElementById('lunaFab').style.display='none';
+  document.getElementById('lunaTooltip').style.display='none';
+  setTimeout(()=>document.getElementById('lunaInput').focus(), 350);
+}
+function fecharLuna(){
+  document.getElementById('lunaOverlay').classList.remove('open');
+  document.getElementById('lunaFab').style.display='flex';
+  document.getElementById('lunaTooltip').style.display='block';
+}
+document.getElementById('lunaOverlay').addEventListener('click', e=>{ if(e.target===e.currentTarget) fecharLuna(); });
+
+function lunaResize(el){
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,90)+'px';
+}
+function lunaKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();lunaEnviar();} }
+
+function lunaAddMsg(txt, tipo){
+  const msgs=document.getElementById('lunaMsgs');
+  const d=document.createElement('div');
+  d.className='lmsg lmsg-'+tipo;
+  d.innerHTML=txt.replace(/\n/g,'<br>');
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+function lunaTypingShow(v){
+  const t=document.getElementById('lunaTyping');
+  t.className='lmsg-typing'+(v?' show':'');
+  if(v) document.getElementById('lunaMsgs').scrollTop=99999;
+}
+function lunaHideSugs(){
+  document.getElementById('lunaSugs').style.display='none';
+}
+async function enviarSug(btn){
+  lunaHideSugs();
+  await lunaProcessar(btn.textContent.trim());
+}
+async function lunaEnviar(){
+  const inp=document.getElementById('lunaInput');
+  const txt=inp.value.trim();
+  if(!txt||lunaOcupada) return;
+  lunaHideSugs();
+  inp.value=''; inp.style.height='auto';
+  await lunaProcessar(txt);
+}
+async function lunaProcessar(txt){
+  if(lunaOcupada) return;
+  lunaOcupada=true;
+  document.getElementById('lunaSend').disabled=true;
+  lunaAddMsg(txt,'user');
+  lunaHistorico.push({role:'user',content:txt});
+  lunaTypingShow(true);
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`Você é Luna, uma IA de apoio emocional acolhedora e empática do site Mente Estudantil, voltado para estudantes brasileiros que enfrentam ansiedade, estresse, pressão escolar e dificuldades emocionais.
+
+Sua personalidade:
+- Calorosa, gentil, paciente e genuinamente empática
+- Usa linguagem próxima, jovem e acessível — sem ser infantil
+- Não é psicóloga, mas é uma escuta ativa e um apoio emocional real
+
+Como você age:
+- SEMPRE valide os sentimentos antes de dar qualquer sugestão
+- Faça uma pergunta de cada vez para entender melhor a situação
+- Ofereça dicas práticas sobre ansiedade, estresse escolar, burnout, sono, pressão e bem-estar quando for apropriado e pedido
+- Mantenha respostas em 2–3 parágrafos no máximo, diretas e humanas
+- Se a pessoa demonstrar sinais de crise severa ou pensamentos de autolesão, sugira gentilmente o CVV (188) e que busque ajuda de um adulto de confiança — de forma cuidadosa, nunca alarmista
+- Termine sempre com uma pergunta aberta ou palavra de encorajamento para continuar a conversa
+- Responda sempre em português brasileiro`,
+        messages:lunaHistorico
+      })
+    });
+    const data=await r.json();
+    lunaTypingShow(false);
+    const resposta=data.content?.[0]?.text||'Desculpe, tive uma dificuldade técnica. Mas lembre-se: você pode ligar 188 (CVV) se precisar de apoio agora 💜';
+    lunaAddMsg(resposta,'luna');
+    lunaHistorico.push({role:'assistant',content:resposta});
+  }catch(err){
+    lunaTypingShow(false);
+    lunaAddMsg('Ops, não consegui me conectar agora 😔 Mas saiba que você não está sozinho. Se precisar de apoio imediato, ligue 188 (CVV) — é gratuito e funciona 24h. 💜','luna');
+  }
+  lunaOcupada=false;
+  document.getElementById('lunaSend').disabled=false;
+  document.getElementById('lunaInput').focus();
+}
+</script>
+</body>
+</html>
